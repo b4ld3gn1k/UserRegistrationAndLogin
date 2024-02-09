@@ -13,26 +13,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder){
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void saveUser(UserValidationData userValidationData){
+    public void saveUser(UserValidationData userValidationData) {
         User user = new User();
         user.setEmail(userValidationData.getEmail());
         user.setUsername(userValidationData.getUsername());
+        user.setPhone(userValidationData.getPhone());
         user.setPassword(passwordEncoder.encode(userValidationData.getPassword()));
         Role role = roleRepository.findByName("ADMIN");
-        if(role == null){
+        if (role == null) {
             role = checkRoleExist();
         }
         user.setRoles(Arrays.asList(role));
@@ -51,11 +52,12 @@ public class UserServiceImpl implements UserService{
                 .collect(Collectors.toList());
     }
 
-    private UserValidationData convertEntityToDto(User user){
-        UserValidationData userDto = new UserValidationData();
-        userDto.setEmail(user.getEmail());
-        userDto.setUsername(user.getUsername());
-        return userDto;
+    private UserValidationData convertEntityToDto(User user) {
+        UserValidationData userValidationData = new UserValidationData();
+        userValidationData.setEmail(user.getEmail());
+        userValidationData.setUsername(user.getUsername());
+        userValidationData.setPhone(user.getPhone());
+        return userValidationData;
     }
 
     private Role checkRoleExist() {

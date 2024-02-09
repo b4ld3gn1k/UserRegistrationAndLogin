@@ -9,7 +9,7 @@
     <link rel='stylesheet prefetch'
           href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext'>
 
-    <link media="all" rel="stylesheet" th:href="@{/css/login_reg.css}" type="text/css"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/reg.css}" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -36,13 +36,19 @@
 </nav>
 <div class="materialContainer">
     <div class="box">
-        <form method="post" role="form" th:action="@{/reg/save}" th:object="${user}">
+        <form method="post" role="form" th:action="@{/reg}" th:object="${user}">
 
             <div class="title">REGISTER</div>
 
             <div class="input">
                 <label for="email">E-mail</label>
                 <input type="email" name="email" id="email">
+                <span class="spin"></span>
+            </div>
+
+            <div class="input">
+                <label for="phone">Phone</label>
+                <input type="phone" name="phone" id="phone">
                 <span class="spin"></span>
             </div>
 
@@ -60,9 +66,6 @@
 
             <div th:if="${param.success}">
                 <h1 class="pass-forgot">You register new account.</h1>
-            </div>
-            <div th:if="${param.error}">
-                <h1 class="pass-forgot">There is already an account registered with that username.</h1>
             </div>
 
             <div class="button">

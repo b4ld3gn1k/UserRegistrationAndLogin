@@ -52,12 +52,12 @@ public class MainController {
         return "reg";
     }
 
-    @PostMapping("/reg/save")
+    @PostMapping("/reg")
     public String registration(@Valid @ModelAttribute("user") UserValidationData userValidationData, BindingResult result, Model model) {
-        User existing = userService.findByUsername(userValidationData.getUsername());
+        User username = userService.findByUsername(userValidationData.getUsername());
 
-        if (existing != null) {
-            result.rejectValue("username", null, "There is already an account registered with that username");
+        if (username != null) {
+            result.rejectValue("username", "wrong", "There is already an account registered with that username");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", userValidationData);

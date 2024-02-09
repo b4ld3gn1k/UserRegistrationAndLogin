@@ -39,12 +39,14 @@
         <tr>
             <th>Username</th>
             <th>E-mail</th>
+            <th>Phone</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user: ${user}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
         </tr>
         </tbody>
     </table>
