@@ -42,27 +42,39 @@
 
             <div class="input">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" th:field="*{email}">
                 <span class="spin"></span>
             </div>
+            <p th:errors="*{email}" class="text-white"
+               th:if="${#fields.hasErrors('email')}">
+            </p>
 
             <div class="input">
                 <label for="phone">Phone</label>
-                <input type="phone" name="phone" id="phone">
+                <input type="phone" name="phone" id="phone" th:field="*{phone}">
                 <span class="spin"></span>
             </div>
+            <p th:errors="*{phone}" class="text-white"
+               th:if="${#fields.hasErrors('phone')}">
+            </p>
 
             <div class="input">
                 <label for="username">Username</label>
-                <input type="username" name="username" id="username">
+                <input type="username" name="username" id="username" th:field="*{username}">
                 <span class="spin"></span>
             </div>
+            <p th:errors="*{username}" class="text-white"
+               th:if="${#fields.hasErrors('username')}">
+            </p>
 
             <div class="input">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" th:field="*{password}">
                 <span class="spin"></span>
             </div>
+            <p th:errors="*{password}" class="text-white"
+               th:if="${#fields.hasErrors('password')}">
+            </p>
 
             <div th:if="${param.success}">
                 <h1 class="pass-forgot">You register new account.</h1>

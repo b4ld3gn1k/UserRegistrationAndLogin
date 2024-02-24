@@ -38,7 +38,7 @@
 </nav>
 <div class="materialContainer">
     <div class="box">
-        <form th:action="@{/login_reg}" method="post">
+        <form th:action="@{/login_reg}" method="post" >
             <div class="title">LOGIN</div>
 
             <div class="input">
@@ -54,7 +54,7 @@
             </div>
 
             <div th:if="${param.error}">
-                <h1 class="pass-forgot">Invalid username and password.</h1>
+                <h1 class="pass-forgot">Invalid username or password.</h1>
             </div>
             <div th:if="${param.logout}">
                 <h1 class="pass-forgot">You have been logged out.</h1>
