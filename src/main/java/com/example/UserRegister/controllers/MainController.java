@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 public class MainController {
-    private UserService userService;
+    private final UserService userService;
 
     public MainController(UserService userService) {
         this.userService = userService;
@@ -64,7 +64,7 @@ public class MainController {
             return "reg";
         }
         userService.saveUser(userValidationData);
-        return "redirect:/reg?success";
+        return "redirect:/login_reg";
     }
 
 }
